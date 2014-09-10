@@ -1,0 +1,40 @@
+SPOJ Problem 4300. Rectangles (AE00)
+
+Explanation:
+
+The problem asks us to print the no. of rectangles(remember squares are also rectangles) that can be generated from 'n' squares each of length 1.
+
+First, we try to see how many squares can be generated using n squares:
+n = 1, only one square of 1x1 is possible.
+n = 2, only one square of 1x1 is possible.
+n = 3, only one square of 1x1 is possible.
+n = 4, two squares are possible of size 1x1 and 2x2.
+n = 5, two squares are possible of size 1x1 and 2x2.
+n = 6, two squares are possible of size 1x1 and 2x2.
+...........
+n = 8, two squares are possible of size 1x1 and 2x2.
+n = 9, three squares are possible of size 1x1, 2x2 and 3x3.
+n = 10, three squares are possible of size 1x1, 2x2 and 3x3.
+...........
+n = 15, three squares are possible of size 1x1, 2x2 and 3x3.
+n = 16, four squares are possible of size 1x1, 2x2, 3x3 and 4x4.
+and so on.
+Looking at the above values, we can easily say that no. of squares will be equal to floor(sqrt(n)).
+
+Now, we see how many rectangles we can get for given 'n'.
+We take:
+n = 1:
+for this value of 'n', we cannot have any rectangle possible.
+n = 2: 
+here, we can have 2 rectangles of size 1x2 and 2x1 but, since 1 rectangle can be rotated and moved to produce another rectangle, we consider only 1 rectangle.
+n = 3:
+here, we can have 4 rectangles of size 1x2, 2x1, 1x3, 3x1; but since 1x2 or 2x1 rectangle can be rotated or moved to obtain other rectangle and similar is the case for 1x3 and 3x1.
+n = 4:
+here, we can have 6 rectangles of size 1x2, 2x1, 1x3, 3x1, 1x4, 4x1. Again, we have 3 pairs, which can be generated from one another, namely, (1x2, 2x1), (1x3, 3x1) and (1x4, 4x1). Thus, we can have a total of 3 rectangles.
+n = 5:
+here, we can have 8 rectangles of size 1x2, 2x1, 1x3, 3x1, 1x4, 4x1, 1x5, 5x1. As described in above condition, we have one extra pair (1x5, 5x1), which can be generated from one another. Thus, we have a total of 4 rectangles.
+n = 6:
+here, we can have 12 rectangles of size 1x2, 2x1, 1x3, 3x1, 1x4, 4x1, 1x5, 5x1, 1x6, 6x1, 2x3, 3x2. Here, apart from above pairs, we have 2 more pairs, which are (1x6, 6x1), (2x3, 3x2). Thus, in total, we have 6 rectangles.
+Considering above rectangles, we can say that we only count those rectangles of form (ixj) where i < j, i * j <= n and value of i is atmax equal to floor(sqrt(n)).
+
+Finally, adding both the number of squares and rectangles, we can have the desired output.
